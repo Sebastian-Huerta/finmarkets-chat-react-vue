@@ -47,6 +47,42 @@ Estado global:
 
 ---
 
+---
+
+# Arquitectura y decisiones técnicas
+
+El proyecto fue diseñado priorizando separación de responsabilidades, simplicidad y escalabilidad.
+
+### Decisiones técnicas:
+
+• **Separación de lógica de sockets**  
+La conexión a Socket.io se maneja en un servicio independiente, evitando duplicación de listeners y desacoplando la comunicación de los componentes de UI.
+
+• **Estado global centralizado**  
+Cada aplicación utiliza una solución de estado adecuada a su ecosistema:
+- React → Zustand
+- Vue → Pinia
+
+Esto permite mantener sincronizado el estado de conexión, usuario y mensajes.
+
+• **Componentización clara**  
+La interfaz se divide en componentes simples y reutilizables:
+- ChatWindow
+- MessageList
+- MessageInput
+- ConnectionStatus
+
+• **Persistencia en cliente**  
+Se utiliza `localStorage` para mantener el usuario y el historial local durante la sesión.
+
+• **Backend mínimo desacoplado**  
+El servidor Socket.io actúa únicamente como canal de comunicación en tiempo real, manteniendo el historial en memoria.
+
+• **Arquitectura paralela entre React y Vue**  
+Ambas implementaciones siguen una estructura similar para facilitar la comparación entre frameworks y demostrar equivalencia de arquitectura.
+
+---
+
 # Ejecutar el proyecto
 
 El proyecto puede ejecutarse de dos formas.
