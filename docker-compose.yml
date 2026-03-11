@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: chat-backend
+    ports:
+      - "3001:3001"
+    networks:
+      - chat-network
+    restart: unless-stopped
+
+  react-chat:
+    build:
+      context: ./react-chat
+      dockerfile: Dockerfile
+    container_name: chat-react
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./react-chat:/app
+      - /app/node_modules
+    environment:
+      - VITE_SOCKET_URL=http://localhost:3001
+    networks:
+      - chat-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  vue-chat:
+    build:
+      context: ./vue-chat
+      dockerfile: Dockerfile
+    container_name: chat-vue
+    ports:
+      - "5174:5174"
+    volumes:
+      - ./vue-chat:/app
+      - /app/node_modules
+    environment:
+      - VITE_SOCKET_URL=http://localhost:3001
+    networks:
+      - chat-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+networks:
+  chat-network:
+    driver: bridge
