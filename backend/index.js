@@ -13,7 +13,7 @@ const messageHistory = [];
 const MAX_HISTORY = 100;
 
 io.on("connection", (socket) => {
-  console.log(`[+] Client connected: ${socket.id}`);
+  console.log(`Cliente connectado: ${socket.id}`);
 
   if (messageHistory.length > 0) {
     socket.emit("history", messageHistory);
