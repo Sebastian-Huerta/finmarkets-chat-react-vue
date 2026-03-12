@@ -3,6 +3,7 @@
 Implementación de un chat en tiempo real desarrollada como prueba técnica utilizando **React**, **Vue** y **Socket.io**.
 
 El proyecto incluye dos aplicaciones frontend que se conectan al mismo servidor Socket.io, permitiendo comunicación en tiempo real entre ambas.
+
 ---
 
 # Estructura del proyecto
@@ -44,8 +45,6 @@ Estado global:
 
 * Zustand (React)
 * Pinia (Vue)
-
----
 
 ---
 
