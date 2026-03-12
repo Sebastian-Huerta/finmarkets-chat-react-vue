@@ -34,6 +34,11 @@ io.on("connection", (socket) => {
     io.emit("message", message);
   });
 
+  socket.on("clear-history", () => {
+    messageHistory.length = 0
+    io.emit("history", [])
+  })
+
   socket.on("disconnect", (reason) => {
     console.log(`Cliente desconectado: ${socket.id} — reason: ${reason}`);
   });
